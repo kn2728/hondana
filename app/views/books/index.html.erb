@@ -1,0 +1,10 @@
+<div class="contents row">
+  <% @books.each do |book| %>
+    <div class="content_post">
+      <p><%= book.author %></p>
+      <span class="title">
+        <%= book.title %>
+      </span>
+    </div>
+  <% end %>
+</div>
