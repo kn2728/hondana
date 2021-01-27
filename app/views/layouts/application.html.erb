@@ -1,19 +1,29 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSSの読み込み -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
     <title>Hondana</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-  <%#= render 'partial/navbar' if current_user %>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, Popper.js, Bootstrap JSの順番に読み込む -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
     <header class="header">
-      <div class="header__bar row">
-        <h1 class="grid-6"><a href="/">Hondana</a></h1>
+      <div class="navbar navbar-expand-lg navbar-light bg-light">
+        <h1 class="grid-6-auto"><a href="/">Hondana</a></h1>
         <% if flash[:notice] %>
         <div class="alert alert-info">
           <%= flash[:notice] %>
@@ -24,26 +34,31 @@
           <%= flash[:alert] %>
         </div>
         <% end %>
-        <div class='nav'>
-          <ul class='lists-right'>
+        <div class='collapse navbar-collapse'>
+          <ul class='navbar-nav'>
             <%# ログインの有無で表示を分岐 %>
             <% if user_signed_in? %>
-              <li><%= link_to current_user.nickname, "#", class: "user-nickname" %></li>
-              <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "logout" %></li>
+              <li><%= link_to current_user.nickname, "#", class: "nav-link text-dark" %></li>
+              <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "nav-link text-dark" %></li>
             <% else %>
-              <li><%= link_to 'ログイン', new_user_session_path, class: "login" %></li>
-              <li><%= link_to '新規登録', new_user_registration_path, class: "sign-up" %></li>
+              <li><%= link_to 'ログイン', new_user_session_path, class: "nav-link text-dark" %></li>
+              <li><%= link_to '新規登録', new_user_registration_path, class: "nav-link text-dark" %></li>
             <% end %>
+            <form class="form-inline my-2 my-lg-0">
+              <!-- <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"> -->
+              <input class="form-control mr-sm-2" type="text" placeholder="検索" aria-label="検索">
+              <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">検索</button>
+            </form>
           </ul>
         </div>
       </div>
     </header>
 
     <%= yield %>
-    <footer class="footer">
-      <p>
-        Hondana.
-      </p>
+
+    <footer class="navbar navbar-expand-lg navbar-light bg-light">
+      <p>© Hondana 2021</p>
     </footer>
   </body>
 </html>
