@@ -1,0 +1,21 @@
+<h2> 詳細</h2>
+
+<h2> <%= @book.title %></h2>
+
+
+<h2> メモ一覧</h2>
+<div>
+<% @memos.each do |m| %>
+  <div>
+    <td><%= l m.created_at, format: :short %></td>
+    <%= m.content %>
+    <hr>
+  </div>
+<% end %>
+</div>
+<%= form_with(model:[@book, @memo], method: :post) do |f|%>
+  <%= f.text_area :content %>
+  <%= f.hidden_field :book_id, value: @book.id %>
+  <%= f.submit 'メモ'%> 
+<% end %>
+<%= link_to 'ホーム', root_path %> 
