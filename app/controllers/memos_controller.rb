@@ -55,8 +55,8 @@ class MemosController < ApplicationController
   # DELETE /memos/1.json
   def destroy
     @book = Book.find(params[:book_id])
-    memo = @book.memos.find(params[:id])
-    memo.destroy
+    @memo = @book.memos.find(params[:id])
+    @memo.destroy
     respond_to do |format|
       format.html { redirect_to memos_url, notice: "Memo was successfully destroyed." }
       format.json { head :no_content }
@@ -66,7 +66,8 @@ class MemosController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_memo
-      @memo = Memo.find(params[:id])
+      @book = Book.find(params[:book_id])
+      @memo = @book.memos.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

@@ -25,9 +25,13 @@ class BooksController < ApplicationController
 
   def destroy
     @book = Book.find(params[:book_id])
-    memo = @book.memos.find(params[:id])
-    memo.destroy
-    redirect_to books_path
+    @memos = @book.memos
+    @memo = @memos.find(params[:id])
+    @memo.destroy
+    respond_to do |format|
+      format.html { redirect_to memos_url, notice: "Memo was successfully destroyed." }
+      format.json { head :no_content }
+    end
   end
 
   private
