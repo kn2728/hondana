@@ -9,7 +9,7 @@
   <div>
     <td><%= l m.created_at, format: :short %></td>
     <%= m.content %>
-    <%= link_to 'Destroy', book_memo_path(@book, ), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <%= link_to 'Destroy', book_memo_path(@book, m.id), method: :delete, data: { confirm: 'Are you sure?' } %>
     <hr>
   </div>
 <% end %>
