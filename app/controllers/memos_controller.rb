@@ -25,15 +25,10 @@ class MemosController < ApplicationController
   # POST /memos.json
   def create
     @memo = current_user.memos.new(memo_params)
-    if @memo.save
-      redirect_back(fallback_location: root_path)  #コメント送信後は、一つ前のページへリダイレクトさせる。
-    else
-      redirect_back(fallback_location: root_path)  #同上
-    end
 
     respond_to do |format|
       if @memo.save
-        format.html { redirect_to @memo, notice: "Memo was successfully created." }
+        format.html { redirect_to book_path(@memo), notice: "Memo was successfully created." }
         format.json { render :show, status: :created, location: @memo }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -59,7 +54,9 @@ class MemosController < ApplicationController
   # DELETE /memos/1
   # DELETE /memos/1.json
   def destroy
-    @memo.destroy
+    @book = Book.find(params[:book_id])
+    memo = @book.memos.find(params[:id])
+    memo.destroy
     respond_to do |format|
       format.html { redirect_to memos_url, notice: "Memo was successfully destroyed." }
       format.json { head :no_content }

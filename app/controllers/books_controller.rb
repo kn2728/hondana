@@ -16,10 +16,18 @@ class BooksController < ApplicationController
   def create
     @book = current_user.books.new(book_params)
     if @book.save
-      redirect_back(fallback_location: root_path)  #コメント送信後は、一つ前のページへリダイレクトさせる。
-    else
-      redirect_back(fallback_location: root_path)  #同上
+      respond_to do |format|
+        format.html { redirect_to books_url, notice: "本が追加されました" }
+        format.json { head :no_content }
+      end
     end
+  end
+
+  def destroy
+    @book = Book.find(params[:book_id])
+    memo = @book.memos.find(params[:id])
+    memo.destroy
+    redirect_to books_path
   end
 
   private
