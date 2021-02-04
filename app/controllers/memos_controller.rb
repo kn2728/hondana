@@ -1,6 +1,6 @@
 class MemosController < ApplicationController
-  before_action :set_memo, only: %w[ show edit update destroy ]
-
+  # before_action :set_memo, only: %w[ show edit update destroy ]
+  before_action :set_memo, only: %w[ show edit update ]
   # GET /memos
   # GET /memos.json
   def index
@@ -58,7 +58,7 @@ class MemosController < ApplicationController
     @memo = @book.memos.find(params[:id])
     @memo.destroy
     respond_to do |format|
-      format.html { redirect_to memos_url, notice: "Memo was successfully destroyed." }
+      format.html { redirect_to book_path(@book), notice: "Memo was successfully destroyed." }
       format.json { head :no_content }
     end
   end
