@@ -55,8 +55,6 @@ class MemosController < ApplicationController
   # DELETE /memos/1.json
   def destroy
     @book = Book.find(params[:book_id])
-    puts("bookの中身はなーに？")
-    puts(params[:id])
     @memo = @book.memos.find(params[:id])
     @memo.destroy
     respond_to do |format|
