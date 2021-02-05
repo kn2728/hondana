@@ -17,22 +17,13 @@ class BooksController < ApplicationController
     @book = current_user.books.new(book_params)
     if @book.save
       respond_to do |format|
-        format.html { redirect_to books_url, notice: "本が追加されました" }
+        format.html { redirect_to root_path, notice: "本が追加されました" }
         format.json { head :no_content }
       end
     end
   end
 
-  def destroy
-    @book = Book.find(params[:book_id])
-    @memos = @book.memos
-    @memo = @memos.find(params[:id])
-    @memo.destroy
-    respond_to do |format|
-      format.html { redirect_to memos_url, notice: "Memo was successfully destroyed." }
-      format.json { head :no_content }
-    end
-  end
+  
 
   private
 

@@ -14,9 +14,11 @@
   </div>
 <% end %>
 </div>
-<%= form_with(model:[@book, @memo], method: :post) do |f|%>
+
+<%= form_with local: true ,model:[@book, @memo], method: :post do |f|%>
   <%= f.text_area :content %>
   <%= f.hidden_field :book_id, value: @book.id %>
   <%= f.submit 'メモ'%> 
 <% end %>
+
 <%= link_to 'ホーム', root_path %> 

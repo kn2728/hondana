@@ -13,7 +13,7 @@
     <div class="row d-flex">
       <div class="">
 
-<%= form_with model: @book do |f| %>
+<%= form_with local: true, model: @book do |f| %>
    <%= f.text_area :title, placeholder: 'タイトル'%>
    <%= f.text_area :author, placeholder: '著者' %>
    <%= f.submit %> 
