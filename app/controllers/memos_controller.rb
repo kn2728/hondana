@@ -56,7 +56,7 @@ class MemosController < ApplicationController
     @memo = @book.memos.find(params[:id])
     @memo.destroy
     respond_to do |format|
-      format.html { redirect_to book_path(@book), notice: "Memo was successfully destroyed." }
+      format.html { redirect_to book_path(@book), notice: "メモを削除しました" }
       format.json { head :no_content }
     end
   end

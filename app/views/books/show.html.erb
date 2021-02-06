@@ -9,7 +9,7 @@
   <div>
     <td><%= l m.created_at, format: :short %></td>
     <%= m.content %>
-    <%= link_to 'Destroy', book_memo_path(@book, m.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <%= link_to '削除', book_memo_path(@book, m.id), method: :delete, data: { confirm: '削除しますか?' } %>
     <hr>
   </div>
 <% end %>
@@ -22,4 +22,4 @@
   <%= f.submit 'メモ'%> 
 <% end %>
 
-<%= link_to 'ホーム', root_path %> 
+<%= link_to '本棚に戻る', root_path %> 

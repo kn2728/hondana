@@ -26,6 +26,7 @@
             <span class="title">
               <h2><%= book.author %></h2>
             </span>
+            <%= link_to '削除', "/books/#{book.id}", method: :delete, data: { confirm: '本棚から削除しますか?' } %>
         <% end %>
         <% end %>
       </div>
