@@ -25,10 +25,14 @@ class MemosController < ApplicationController
   # POST /memos.json
   def create
     @memo = current_user.memos.new(memo_params)
-    @memo.save
-    respond_to do |format|
-      format.html { redirect_to book_path(@book), notice: "Memo was successfully created." }
-      format.json { render :show, status: :created, location: @book }
+    if @memo.save
+      respond_to do |format|
+        format.html { redirect_to book_path(@book), notice: "メモしました" }
+        format.json { render :show, status: :created, location: @book }
+      end
+    else
+      @memos = @book.memos  #投稿詳細に関連付けてあるコメントを全取得
+      render template: "books/show"
     end
   end
 

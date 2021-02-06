@@ -16,6 +16,7 @@
 </div>
 
 <%= form_with local: true ,model:[@book, @memo], method: :post do |f|%>
+  <%= render 'layouts/error_messages', model: f.object %>
   <%= f.text_area :content %>
   <%= f.hidden_field :book_id, value: @book.id %>
   <%= f.submit 'メモ'%> 
