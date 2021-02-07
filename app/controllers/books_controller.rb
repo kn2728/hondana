@@ -3,7 +3,7 @@ class BooksController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @books = current_user.books
+    @books = Book.all
     @book = Book.new   #投稿一覧画面で新規投稿を行うので、formのパラメータ用にPostオブジェクトを取得
   end
 
@@ -14,7 +14,7 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = current_user.books.new(book_params)
+    @book = Book.new(book_params)
     if @book.save
       respond_to do |format|
         format.html { redirect_to root_path, notice: "本が追加されました" }
@@ -35,6 +35,6 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :author).merge(user_id: current_user.id)
+    params.require(:book).permit(:title, :author, :isbn)
   end
 end
