@@ -1,0 +1,17 @@
+<%= form_with local: true, model: @book do |f| %>
+   <%= f.text_area :title, placeholder: 'タイトル'%>
+   <%= f.text_area :author, placeholder: '著者' %>
+   <%= f.text_field :isbn, placeholder: 'isbn' %>
+   <%= f.submit %> 
+<% end %>
+
+<% if user_signed_in? %>
+  <% @books.each do |book| %>
+    <%= link_to image_tag("bookirust.png", width: "200px", class:"rounded"), book %>
+    <h1><%= book.title %></h1>
+    <span class="title">
+      <h2><%= book.author %></h2>
+    </span>
+    <%= link_to '削除', "/books/#{book.id}", method: :delete, data: { confirm: '本棚から削除しますか?' } %>
+  <% end %>
+<% end %>

@@ -26,7 +26,7 @@ class BooksController < ApplicationController
 
   def destroy
     @book = Book.find(params[:id])
-    @book.destroy
+    @book.users.delete(current_user)
     respond_to do |format|
       format.html { redirect_to root_path, notice: "本を削除しました" }
       format.json { head :no_content }
