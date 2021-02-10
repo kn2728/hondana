@@ -4,6 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :books
+  
   has_many :memos
+  has_many :reads
+  has_many :books, through: :reads
+  accepts_nested_attributes_for :reads
 end
