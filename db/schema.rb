@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2021_02_08_062440) do
   end
 
   create_table "reads", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.boolean "complete"
+    t.boolean "complete", default: false, null: false
     t.bigint "book_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false

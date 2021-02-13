@@ -1,9 +1,13 @@
 class ReadsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: :index
   
   def index
-    @books = current_user.books
-    @book = Book.new
+    if user_signed_in?
+      @books = current_user.books
+      @book = Book.new # ログイン済みのトップ画面
+    else 
+      render 'books/index' # ログインしてないトップ画面
+    end
   end
 
   def create

@@ -33,6 +33,15 @@ class BooksController < ApplicationController
     end
   end
 
+  def update
+    @book = Book.find(params[:id])
+    Read.where(book_id: @book.id, user_id: current_user.id).update(complete: true)
+    respond_to do |format|
+      format.html { redirect_to root_path, notice: "読書完了しました" }
+      format.json { head :no_content }
+    end
+  end
+
   private
 
   def book_params
