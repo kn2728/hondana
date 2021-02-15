@@ -3,8 +3,6 @@ class BooksController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @books = current_user.books
-    @book = Book.new   #投稿一覧画面で新規投稿を行うので、formのパラメータ用にPostオブジェクトを取得
   end
 
   def show
