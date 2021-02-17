@@ -1,0 +1,20 @@
+<h2> <%= @book.title %></h2>
+
+
+<h2> メモ一覧</h2>
+<div>
+<% @memos.each do |m| %>
+  <div>
+    <td><%= l m.created_at, format: :short %></td>
+    <%= m.content %>
+    <hr>
+  </div>
+<% end %>
+</div>
+
+<%= form_with local: true ,model:[@book, @summary], method: :post do |f|%>
+  <%= render 'layouts/error_messages', model: f.object %>
+  <%= f.text_area :matome %>
+  <%= f.hidden_field :book_id, value: @book.id %>
+  <%= f.submit 'メモ'%> 
+  <% end %>

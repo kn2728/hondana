@@ -1,0 +1,15 @@
+<h2> まとめ</h2>
+
+<h2> <%= @book.title %></h2>
+
+<h2> まとめ一覧</h2>
+<div>
+<% @summaries.each do |m| %>
+  <div>
+    <td><%= l m.created_at, format: :short %></td>
+    <%= m.matome %>
+    <%= m.user.nickname %>
+    <hr>
+  </div>
+<% end %>
+</div>

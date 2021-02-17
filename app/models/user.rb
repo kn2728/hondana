@@ -8,5 +8,6 @@ class User < ApplicationRecord
   has_many :memos
   has_many :reads
   has_many :books, through: :reads
+  has_many :summaries
   accepts_nested_attributes_for :reads
 end
