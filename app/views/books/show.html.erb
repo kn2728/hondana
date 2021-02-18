@@ -21,11 +21,13 @@
   <%= f.hidden_field :book_id, value: @book.id %>
   <%= f.submit 'メモ'%> 
 <% end %>
-
+<% if @read.find_by(complete: false) %>
 <%= form_with(model: @book, local: true) do |form| %>
   <div class="done">
     <%= form.label :complete %>
     <%= form.submit '更新'%>
   </div>
 <% end %>
+<% end %>
+
 <%= link_to '本棚に戻る', root_path %> 

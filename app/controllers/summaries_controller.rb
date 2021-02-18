@@ -19,8 +19,8 @@ class SummariesController < ApplicationController
         format.json { render :show, status: :created, location: @book }
       end
     else
-      @summaries = @book.summaries  #投稿詳細に関連付けてあるコメントを全取得
-      render template: "books/show"
+      @memos = @book.memos  #投稿詳細に関連付けてあるコメントを全取得
+      render "new"
     end
   end
 

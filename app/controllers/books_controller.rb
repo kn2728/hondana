@@ -9,6 +9,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @memos = @book.memos  #投稿詳細に関連付けてあるコメントを全取得
     @memo = current_user.memos.new  #投稿詳細画面でコメントの投稿を行うので、formのパラメータ用にCommentオブジェクトを取得
+    @read = Read.where(book_id: @book.id, user_id: current_user.id)
   end
 
   def create
@@ -35,7 +36,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     Read.where(book_id: @book.id, user_id: current_user.id).update(complete: true)
     respond_to do |format|
-      format.html { redirect_to root_path, notice: "読書完了しました" }
+      format.html { redirect_to new_book_summary_path(@book), notice: "読書完了しました" }
       format.json { head :no_content }
     end
   end
