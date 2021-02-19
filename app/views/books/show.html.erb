@@ -28,6 +28,8 @@
     <%= form.submit '更新'%>
   </div>
 <% end %>
+<% else %>
+<%= link_to 'みんなの要約を見る', book_summaries_path(@book) %>
 <% end %>
 
 <%= link_to '本棚に戻る', root_path %> 

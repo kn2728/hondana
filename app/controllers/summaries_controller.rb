@@ -4,6 +4,7 @@ class SummariesController < ApplicationController
 
   def index
     @summaries = Summary.all
+    @summary = current_user.summaries.find(@book.id)
   end
 
   def new

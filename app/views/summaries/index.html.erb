@@ -2,6 +2,11 @@
 
 <h2> <%= @book.title %></h2>
 
+
+<h2> あなたの投稿</h2>
+  <td><%= l @summary.created_at, format: :short %></td>
+  <%= @summary.matome %>
+
 <h2> まとめ一覧</h2>
 <div>
 <% @summaries.each do |m| %>
