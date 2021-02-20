@@ -4,12 +4,12 @@ class SummariesController < ApplicationController
 
   def index
     @summaries = Summary.all
-    @summary = current_user.summaries.find(@book.id)
+    @summary = current_user.summaries.find_by(user_id: current_user.id)
   end
 
   def new
     @summary = Summary.new
-    @memos = @book.memos
+    @memos = Memo.where(book_id: @book.id, user_id: current_user.id)
   end
 
   def create
