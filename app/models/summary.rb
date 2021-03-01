@@ -3,4 +3,5 @@ class Summary < ApplicationRecord
   belongs_to :book
 
   validates_uniqueness_of :book_id, scope: :user_id
+  validates :matome, length: { maximum: 1000 }, presence: true
 end

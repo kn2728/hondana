@@ -1,6 +1,7 @@
 class BooksController < ApplicationController
 
   before_action :authenticate_user!
+  before_action :ensure_correct_user
 
   def index
   end
@@ -45,5 +46,13 @@ class BooksController < ApplicationController
 
   def book_params
     params.require(:book).permit(:title, :author, :isbn, user_ids:[])
+  end
+
+  def ensure_correct_user
+    @read = Read.find(params[:id])
+    if @read.user_id != current_user.id
+      flash[:notice] = "権限がありません"
+      redirect_to root_path
+    end
   end
 end

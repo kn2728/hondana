@@ -1,5 +1,6 @@
 class SummariesController < ApplicationController
   before_action :authenticate_user!
+  before_action :find_read
   before_action :set_summary, only: %w[ index new create ]
 
   def index
@@ -34,5 +35,13 @@ class SummariesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def summary_params
       params.require(:summary).permit(:matome, :user_id, :book_id)
+    end
+
+    def find_read
+      @read = Read.find_by(user_id: current_user.id)
+      if @read.nil? || @read.user_id != current_user.id
+        flash[:notice] = "権限がありません"
+        redirect_to root_path
+      end
     end
 end

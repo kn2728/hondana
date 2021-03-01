@@ -10,4 +10,13 @@ class User < ApplicationRecord
   has_many :books, through: :reads
   has_many :summaries
   accepts_nested_attributes_for :reads
+
+  with_options presence: true do
+    validates :nickname
+    VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
+    validates :email, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
+    VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)\w{6,}\z/.freeze
+    validates :password,
+              format: { with: VALID_PASSWORD_REGEX }
+  end
 end

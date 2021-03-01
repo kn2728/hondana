@@ -31,7 +31,8 @@ class MemosController < ApplicationController
         format.json { render :show, status: :created, location: @book }
       end
     else
-      @memos = @book.memos  #投稿詳細に関連付けてあるコメントを全取得
+      @memos = Memo.where(book_id: @book.id, user_id: current_user.id)  #投稿詳細に関連付けてあるコメントを全取得
+      @read = Read.where(book_id: @book.id, user_id: current_user.id)
       render template: "books/show"
     end
   end
