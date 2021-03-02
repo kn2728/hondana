@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root to: 'reads#index'
   resources :books do  #booksコントローラへのルーティング  
     resources :memos, only: [:create, :destroy]  #memosコントローラへのルーティング
-    resources :summaries, only: [:index, :create, :new]
+    resources :summaries, only: [:index, :create, :new, :edit, :update]
   end
   resources :reads
 end

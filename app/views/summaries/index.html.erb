@@ -6,7 +6,7 @@
 <h2> あなたの投稿</h2>
   <td><%= l @summary.created_at, format: :short %></td>
   <%= @summary.matome %>
-
+  <%= link_to '編集', edit_book_summary_path(@book, @summary) %>
 <h2> まとめ一覧</h2>
 <div>
 <% @summaries.each do |m| %>

@@ -1,7 +1,7 @@
 class SummariesController < ApplicationController
   before_action :authenticate_user!
   before_action :find_read
-  before_action :set_summary, only: %w[ index new create ]
+  before_action :set_summary, only: %w[ index new create edit update]
 
   def index
     @summaries = Summary.all
@@ -23,6 +23,24 @@ class SummariesController < ApplicationController
     else
       @memos = @book.memos  #投稿詳細に関連付けてあるコメントを全取得
       render "new"
+    end
+  end
+
+  def edit
+    @summary = current_user.summaries.find_by(user_id: current_user.id)
+    @summaries = Summary.find_by(id: params[:id])
+  end
+
+  def update
+    @summary = current_user.summaries.new(summary_params)
+    @summaries = Summary.find_by(id: params[:id])
+    if @summaries.update(summary_params)
+      respond_to do |format|
+        format.html { redirect_to book_path(@book), notice: "編集しました" }
+        format.json { render :show, status: :created, location: @book }
+      end
+    else
+      render "edit"
     end
   end
 
