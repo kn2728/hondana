@@ -1,0 +1,14 @@
+<% if @books.present? %>
+  <% @books.each do |book| %>
+    <div class="list">
+      <%= book.title %>
+      <%= book.author %>
+      <%= form_tag(books_path) do %>
+    <%= hidden_field_tag :isbn, book.isbn %>
+    <%= hidden_field_tag :title, book.title %>
+    <%= hidden_field_tag :author, book.author %>
+    <%= submit_tag 'save' %>
+ <% end %>
+    </div>
+  <% end %>
+<% end %>

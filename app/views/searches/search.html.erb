@@ -1,0 +1,17 @@
+<h1>本の検索</h1>
+
+<div class='content'>
+  <div id="search-box">
+    <%= form_with url: searches_search_path, method: :get, local: true do |f| %>
+        <%= f.text_field :keyword, class: "form-control", id: "good_search", name: "keyword", placeholder: "キーワードを打ち込んでください", style: "width: 200px;"%>
+        <%= f.submit '本の題名を検索', class: "form-control btn btn-success" %> 
+    <% end %>
+  </div>
+  
+  <h2>検索結果</h2>
+  <div id='good_list'>
+     <%= render partial: 'good_list' %>
+  </div>
+</div>
+
+<p>Find me in app/views/searches/search.html.erb</p>

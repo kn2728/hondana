@@ -41,6 +41,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'rubocop', require: false
+  gem 'pry-rails'
 end
 
 group :test do
@@ -59,3 +60,5 @@ gem 'bootstrap-sass', '3.4.1'
 gem 'mini_magick'
 gem 'image_processing', '~> 1.2'
 gem 'devise'
+
+gem 'rakuten_web_service'

@@ -4,7 +4,6 @@
    <%= f.text_field :isbn, placeholder: 'isbn' %>
    <%= f.submit %> 
 <% end %>
-
 <% if user_signed_in? %>
   <% @books.each do |book| %>
     <%= link_to image_tag("bookirust.png", width: "200px", class:"rounded"), book %>
