@@ -11,12 +11,14 @@ class BooksController < ApplicationController
     @memo = current_user.memos.new  #投稿詳細画面でコメントの投稿を行うので、formのパラメータ用にCommentオブジェクトを取得
     @read = Read.where(book_id: @book.id, user_id: current_user.id)
   end
-
+  def new
+    @book = Book.new
+  end
   def create
     @book = Book.find_or_initialize_by(isbn: params[:isbn])
     unless @book.persisted?
       results = RakutenWebService::Books::Book.search(isbn: @book.isbn)
-      @item = Book.new(read(results.first))
+      @item = Book.create(read(results.first))
       @item.users << current_user
       if @item.save
         respond_to do |format|
@@ -48,20 +50,19 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.permit(:title, :author, :isbn, user_ids:[])
+    params.require(:book).permit(:title, :author, :isbn, user_ids:[])
   end
 
   def read(result)
     title = result['title']
     author = result['author']
     isbn = result['isbn']
-    user_ids = []
+    image_url = result['mediumImageUrl'].gsub('?_ex=120x120', '')
     {
       title: title,
       author: author,
       isbn: isbn,
+      image_url: image_url
     }
-
-
   end
 end

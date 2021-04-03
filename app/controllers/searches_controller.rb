@@ -19,11 +19,12 @@ class SearchesController < ApplicationController
     title = result['title']
     author = result['author']
     isbn = result['isbn']
+    image_url = result['mediumImageUrl'].gsub('?_ex=120x120', '')
     {
       title: title,
       author: author,
       isbn: isbn,
+      image_url: image_url
     }
-
   end
 end
