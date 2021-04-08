@@ -14,7 +14,7 @@ class User < ApplicationRecord
   with_options presence: true do
     validates :nickname
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
-    validates :email, format: { with: VALID_EMAIL_REGEX } #uniqueness: { case_sensitive: true },
+    validates :email, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: true }
     VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)\w{6,}\z/.freeze
     validates :password,
               format: { with: VALID_PASSWORD_REGEX }

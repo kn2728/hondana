@@ -88,9 +88,19 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    diff-lcs (1.4.4)
     erubi (1.10.0)
     execjs (2.7.0)
+    factory_bot (6.1.0)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.1.0)
+      factory_bot (~> 6.1.0)
+      railties (>= 5.0.0)
+    faker (2.13.0)
+      i18n (>= 1.6, < 2)
     ffi (1.14.2)
+    gimei (0.5.1)
+      romaji
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     i18n (1.8.7)
@@ -179,6 +189,25 @@ GEM
       actionpack (>= 5.0)
       railties (>= 5.0)
     rexml (3.2.4)
+    romaji (0.2.4)
+      rake (>= 0.8.0)
+    rspec-core (3.9.3)
+      rspec-support (~> 3.9.3)
+    rspec-expectations (3.9.4)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.9.0)
+    rspec-mocks (3.9.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.9.0)
+    rspec-rails (3.9.1)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec-core (~> 3.9.0)
+      rspec-expectations (~> 3.9.0)
+      rspec-mocks (~> 3.9.0)
+      rspec-support (~> 3.9.0)
+    rspec-support (3.9.4)
     rubocop (1.8.1)
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
@@ -212,6 +241,8 @@ GEM
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
     spring (2.1.1)
+    spring-commands-rspec (1.0.4)
+      spring (>= 0.9.1)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
       spring (>= 1.2, < 3.0)
@@ -262,6 +293,9 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   devise
+  factory_bot_rails
+  faker
+  gimei
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
   listen (>= 3.0.5, < 3.2)
@@ -271,10 +305,12 @@ DEPENDENCIES
   puma (~> 3.11)
   rails (~> 6.0.0)
   rakuten_web_service
+  rspec-rails (~> 3.6)
   rubocop
   sass-rails (~> 5)
   selenium-webdriver
   spring
+  spring-commands-rspec
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
   tzinfo-data
