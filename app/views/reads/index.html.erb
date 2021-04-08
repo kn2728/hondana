@@ -1,9 +1,4 @@
-<%= form_with local: true, model: @book do |f| %>
-   <%= f.text_area :title, placeholder: 'タイトル'%>
-   <%= f.text_area :author, placeholder: '著者' %>
-   <%= f.text_field :isbn, placeholder: 'isbn' %>
-   <%= f.submit %> 
-<% end %>
+<%= link_to '本を探す', searches_search_path %>
 <% if user_signed_in? %>
   <% @books.each do |book| %>
   <% if book.image_url.present? %>
