@@ -1,6 +1,7 @@
 class BooksController < ApplicationController
 
   before_action :authenticate_user!
+  before_action :ensure_correct_user , except: :create
 
   def index
   end
@@ -16,7 +17,15 @@ class BooksController < ApplicationController
   end
   def create
     @book = Book.find_or_initialize_by(isbn: params[:isbn])
-    unless @book.persisted?
+    if @book.persisted?
+      @book.users << current_user
+      if @book.save
+        respond_to do |format|
+          format.html { redirect_to root_path, notice: "本が追加されました" }
+          format.json { head :no_content }
+        end
+      end
+    else 
       results = RakutenWebService::Books::Book.search(isbn: @book.isbn)
       @item = Book.create(read(results.first))
       @item.users << current_user
@@ -64,5 +73,12 @@ class BooksController < ApplicationController
       isbn: isbn,
       image_url: image_url
     }
+  end
+  def ensure_correct_user
+    @read = Read.where(user_id: current_user.id, book_id: params[:id])
+    if @read.blank?
+      flash[:notice] = "権限がありません"
+      redirect_to root_path
+    end
   end
 end

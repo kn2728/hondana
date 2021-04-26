@@ -1,64 +1,90 @@
 <!DOCTYPE html>
+<html lang="ja">
 <html>
   <head>
+    <title>Hondana</title>
+    <%= favicon_link_tag 'favicon.png' %>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSSの読み込み -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
-    <title>Hondana</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script type="text/javascript" src="https://js.pay.jp/v1/"></script>
+    <%= stylesheet_link_tag 'application', media: 'all'%>
+    <%= javascript_pack_tag 'application' %>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <style>
+
+      </style>
   </head>
 
   <body>
+    <header>
+            <% if flash[:notice] %>
+              <div class="alert alert-info mb-0 alert-dismissible fade show">
+                <%= flash[:notice] %>
+                <button class="close" data-dismiss="alert">
+                &times;
+                </button>
+              </div>
+            <% end %>
+            <% if flash[:alert] %>
+              <div class="alert alert-danger mb-0 alert-dismissible fade show">
+                <%= flash[:alert] %>
+                <button class="close" data-dismiss="alert">
+                &times;
+                </button>
+              </div>
+            <% end %>
+            
+          <nav class="navbar navbar-expand-md navbar-light bg-secondary fixed-top">
+            <a href="/" class="navbar-brand text-black mr-0">Hondana</a>
+            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
+            <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+            </svg>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#menu">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+
+          <div id="menu" class="collapse navbar-collapse">
+            <div class='navbar-collapse d-flex justify-content-end'>
+              <ul class='navbar-nav'>
+                <li>
+                <%= link_to searches_search_path, class: "nav-link text-center text-dark" do %>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                </svg>
+                <% end %>
+                </li>
+                <%# ログインの有無で表示を分岐 %>
+                <% if user_signed_in? %>
+                  <li><%= link_to current_user.nickname, "#", class: "nav-link text-dark" %></li>
+                  <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "nav-link text-dark" %></li>
+                <% else %>
+                  <li><%= link_to 'ログイン', new_user_session_path, class: "nav-link text-dark" %></li>
+                  <li><%= link_to '新規登録', new_user_registration_path, class: "nav-link text-dark" %></li>
+                <% end %>
+              </ul>
+            </div>
+
+          </div>
+          </nav>
+      </header>
+
+    <%= yield %>
+
+    <footer class="text-center text-muted py-4">
+      <div class="container">
+        <span class="text-muted font-size">© Hondana 2021</span>
+      </div>
+    </footer>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, Popper.js, Bootstrap JSの順番に読み込む -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 
-    <header class="header">
-      <% if flash[:notice] %>
-        <div class="alert alert-info">
-          <%= flash[:notice] %>
-        </div>
-      <% end %>
-      <% if flash[:alert] %>
-        <div class="alert alert-danger">
-          <%= flash[:alert] %>
-        </div>
-      <% end %>
-   
-
-      <div class="navbar navbar-expand-lg navbar-light bg-light ">
-        <h1 class="grid-6-auto"><a href="/">Hondana</a></h1>
-        <div class='collapse navbar-collapse d-flex justify-content-end'>
-          <ul class='navbar-nav'>
-            <%# ログインの有無で表示を分岐 %>
-            <% if user_signed_in? %>
-              <li><%= link_to current_user.nickname, "#", class: "nav-link text-dark" %></li>
-              <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "nav-link text-dark" %></li>
-            <% else %>
-              <li><%= link_to 'ログイン', new_user_session_path, class: "nav-link text-dark" %></li>
-              <li><%= link_to '新規登録', new_user_registration_path, class: "nav-link text-dark" %></li>
-            <% end %>
-          </ul>
-        </div>
-      </div>
-    </header>
-
-    <%= yield %>
-
-    <footer class="footer mt-auto py-3">
-      <div class="container">
-        <span class="text-muted">© Hondana 2021</span>
-        <%= link_to '本棚に戻る', root_path %> 
-      </div>
-    </footer>
   </body>
 </html>

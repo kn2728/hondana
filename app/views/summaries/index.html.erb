@@ -4,9 +4,14 @@
 
 
 <h2> あなたの投稿</h2>
+<% if @summary.present? %>
   <td><%= l @summary.created_at, format: :short %></td>
   <%= @summary.matome %>
   <%= link_to '編集', edit_book_summary_path(@book, @summary) %>
+  <% else %>
+  <h4>あなたの投稿はありません</h4>
+  <%= link_to '投稿をする', new_book_summary_path(@book) %>
+  <% end %>
 <h2> まとめ一覧</h2>
 <div>
 <% @summaries.each do |m| %>

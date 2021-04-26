@@ -1,11 +1,11 @@
 class SummariesController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_read
+  before_action :ensure_correct_user
   before_action :set_summary, only: %w[ index new create edit update]
 
   def index
-    @summaries = Summary.all
-    @summary = current_user.summaries.find_by(user_id: current_user.id)
+    @summaries = Summary.where(book_id: @book.id)
+    @summary = current_user.summaries.find_by(book_id: @book.id)
   end
 
   def new
@@ -21,26 +21,24 @@ class SummariesController < ApplicationController
         format.json { render :show, status: :created, location: @book }
       end
     else
-      @memos = @book.memos  #投稿詳細に関連付けてあるコメントを全取得
+      @memos = @book.memos.where(book_id: @book.id, user_id: current_user.id)  #投稿詳細に関連付けてあるコメントを全取得
       render "new"
     end
   end
 
   def edit
-    @summary = current_user.summaries.find_by(user_id: current_user.id)
-    @summaries = Summary.find_by(id: params[:id])
+    @summary = Summary.find_by(id: params[:id])
   end
 
   def update
-    @summary = current_user.summaries.new(summary_params)
-    @summaries = Summary.find_by(id: params[:id])
-    if @summaries.update(summary_params)
+    @summary = Summary.find_by(id: params[:id])
+    if @summary.update(summary_params)
       respond_to do |format|
         format.html { redirect_to book_path(@book), notice: "編集しました" }
         format.json { render :show, status: :created, location: @book }
       end
     else
-      render "edit"
+      render 'edit'
     end
   end
 
@@ -55,9 +53,9 @@ class SummariesController < ApplicationController
       params.require(:summary).permit(:matome, :user_id, :book_id)
     end
 
-    def find_read
-      @read = Read.find_by(user_id: current_user.id)
-      if @read.nil? || @read.user_id != current_user.id
+    def ensure_correct_user
+      @read = Read.where(user_id: current_user.id, book_id: params[:book_id])
+      if @read.blank?
         flash[:notice] = "権限がありません"
         redirect_to root_path
       end
