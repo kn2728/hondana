@@ -18,22 +18,22 @@ RSpec.describe Summary, type: :model do
       it 'matomeが空' do
         @summary.matome = ''
         @summary.valid?
-        expect(@summary.errors.full_messages).to include("Matomeを入力してください")
+        expect(@summary.errors.full_messages).to include('Matomeを入力してください')
       end
       it 'matomeが字数を超えている' do
         @summary.matome = Faker::Lorem.characters(number: 801)
         @summary.valid?
-        expect(@summary.errors.full_messages).to include("Matomeは800文字以内で入力してください")
+        expect(@summary.errors.full_messages).to include('Matomeは800文字以内で入力してください')
       end
       it 'userがログインしていない' do
         @summary.user_id = ''
         @summary.valid?
-        expect(@summary.errors.full_messages).to include("Userを入力してください")
+        expect(@summary.errors.full_messages).to include('Userを入力してください')
       end
       it 'bookが指定できていない' do
         @summary.book_id = ''
         @summary.valid?
-        expect(@summary.errors.full_messages).to include("Bookを入力してください")
+        expect(@summary.errors.full_messages).to include('Bookを入力してください')
       end
     end
   end

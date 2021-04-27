@@ -18,22 +18,22 @@ RSpec.describe Memo, type: :model do
       it 'contentが空' do
         @memo.content = ''
         @memo.valid?
-        expect(@memo.errors.full_messages).to include("Contentを入力してください")
+        expect(@memo.errors.full_messages).to include('Contentを入力してください')
       end
       it 'contentが字数を超えている' do
         @memo.content = Faker::Lorem.characters(number: 141)
         @memo.valid?
-        expect(@memo.errors.full_messages).to include("Contentは140文字以内で入力してください")
+        expect(@memo.errors.full_messages).to include('Contentは140文字以内で入力してください')
       end
       it 'userがログインしていない' do
         @memo.user_id = ''
         @memo.valid?
-        expect(@memo.errors.full_messages).to include("Userを入力してください")
+        expect(@memo.errors.full_messages).to include('Userを入力してください')
       end
       it 'bookが指定できていない' do
         @memo.book_id = ''
         @memo.valid?
-        expect(@memo.errors.full_messages).to include("Bookを入力してください")
+        expect(@memo.errors.full_messages).to include('Bookを入力してください')
       end
     end
   end

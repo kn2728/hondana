@@ -17,19 +17,19 @@ RSpec.describe Book, type: :model do
         user = @user
         @book.title = ''
         @book.valid?
-        expect(@book.errors.full_messages).to include("Titleを入力してください")
+        expect(@book.errors.full_messages).to include('Titleを入力してください')
       end
       it 'authorがない' do
         user = @user
         @book.author = ''
         @book.valid?
-        expect(@book.errors.full_messages).to include("Authorを入力してください")
+        expect(@book.errors.full_messages).to include('Authorを入力してください')
       end
       it 'isbnがない' do
         user = @user
         @book.isbn = ''
         @book.valid?
-        expect(@book.errors.full_messages).to include("Isbnを入力してください")
+        expect(@book.errors.full_messages).to include('Isbnを入力してください')
       end
     end
   end

@@ -1,5 +1,4 @@
 class Book < ApplicationRecord
-
   has_one_attached :image
   has_many :memos, dependent: :destroy
   has_many :reads, dependent: :destroy

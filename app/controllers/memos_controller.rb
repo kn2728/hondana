@@ -1,6 +1,6 @@
 class MemosController < ApplicationController
   # before_action :set_memo, only: %w[ show edit update destroy ]
-    before_action :set_memo, only: %w[ create destroy ]
+  before_action :set_memo, only: %w[create destroy]
   # GET /memos
   # GET /memos.json
   # def index
@@ -27,13 +27,13 @@ class MemosController < ApplicationController
     @memo = current_user.memos.new(memo_params)
     if @memo.save
       respond_to do |format|
-        format.html { redirect_to book_path(@book), notice: "メモしました" }
+        format.html { redirect_to book_path(@book), notice: 'メモしました' }
         format.json { render :show, status: :created, location: @book }
       end
     else
-      @memos = Memo.where(book_id: @book.id, user_id: current_user.id)  #投稿詳細に関連付けてあるコメントを全取得
+      @memos = Memo.where(book_id: @book.id, user_id: current_user.id) # 投稿詳細に関連付けてあるコメントを全取得
       @read = Read.where(book_id: @book.id, user_id: current_user.id)
-      render template: "books/show"
+      render template: 'books/show'
     end
   end
 
@@ -57,19 +57,20 @@ class MemosController < ApplicationController
     @memo = @book.memos.find(params[:id])
     @memo.destroy
     respond_to do |format|
-      format.html { redirect_to book_path(@book), notice: "メモを削除しました" }
+      format.html { redirect_to book_path(@book), notice: 'メモを削除しました' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_memo
-      @book = Book.find(params[:book_id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def memo_params
-      params.require(:memo).permit(:content, :user_id, :book_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_memo
+    @book = Book.find(params[:book_id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def memo_params
+    params.require(:memo).permit(:content, :user_id, :book_id)
+  end
 end

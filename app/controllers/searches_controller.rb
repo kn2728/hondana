@@ -1,13 +1,13 @@
 class SearchesController < ApplicationController
   before_action :authenticate_user!
-  
+
   def search
     @books = []
     @title = params[:keyword]
     if @title.present?
       results = RakutenWebService::Books::Book.search({
-        title: @title,
-      })
+                                                        title: @title
+                                                      })
       results.each do |result|
         @book = Book.new(read(result))
         @books << @book

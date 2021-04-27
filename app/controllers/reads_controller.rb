@@ -4,7 +4,7 @@ class ReadsController < ApplicationController
   def index
     if user_signed_in?
       @books = current_user.books
-    else 
+    else
       render 'books/index' # ログインしてないトップ画面
     end
   end
@@ -14,7 +14,7 @@ class ReadsController < ApplicationController
     @book.users << current_user
     if @book.save
       respond_to do |format|
-        format.html { redirect_to root_path, notice: "本が追加されました" }
+        format.html { redirect_to root_path, notice: '本が追加されました' }
         format.json { head :no_content }
       end
     end
@@ -28,6 +28,6 @@ class ReadsController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :author, :isbn, user_ids:[])
+    params.require(:book).permit(:title, :author, :isbn, user_ids: [])
   end
 end
