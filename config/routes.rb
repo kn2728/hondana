@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   root to: 'reads#index'
 
   namespace :api, format: 'json' do
-    resources :books, only: [:show] 
+    namespace :v1 do
+      resources :books, only: [:index, :show, :create, :update, :destroy]
+    end
   end
 
   resources :books do  #booksコントローラへのルーティング  
