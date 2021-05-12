@@ -7,7 +7,7 @@ class Api::V1::BooksController < ApiController
   end
 
   def index
-    books = Book.all
+    books = current_user.books
     render json: books
   end
 
