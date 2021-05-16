@@ -6,7 +6,9 @@ Rails.application.routes.draw do
 
   namespace :api, format: 'json' do
     namespace :v1 do
-      resources :books, only: [:index, :show, :create, :update, :destroy]
+      resources :books, only: [:index, :show, :create, :update, :destroy] do
+        resources :memos, only: [:create]  #memosコントローラへのルーティング
+      end
     end
   end
 

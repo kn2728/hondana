@@ -11,12 +11,28 @@
         <!-- <router-link :to="{ name: 'BookEditPage' }">編集</router-link> -->
       </div>
     </div>
+    <hr>
+      <form @submit.prevent="createMemo">
+      <div v-if="errors.length != 0">
+        <ul v-for="e in errors" :key="e">
+          <li><font color="red">{{ e }}</font></li>
+        </ul>
+      </div>
+      <div>
+        <label>memo</label>
+        <input v-model="memo.content" type="text">
+      </div>
+      <button type="submit">Commit</button>
+      </form>
+      <hr>
     <div class="row">
-      <div v-for="memo in book.memos" :key="memo.id">
+      <div v-for="memo in book.memos" :key="memo.id" class="mx-auto">
         {{ memo.created_at|moment }}
         {{ memo.content }}
+        <hr>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -28,6 +44,10 @@ export default {
   data: function () {
     return {
       book: [],
+      memo:{
+        content: '',
+      },
+      errors: ''
     }
   },
   filters: {
@@ -40,6 +60,22 @@ export default {
     axios
       .get(`/api/v1/books/${this.$route.params.id}.json`)
       .then(response => (this.book = response.data))
+  },
+  methods: {
+    createMemo: function() {
+      axios
+        .post(`/api/v1/books/${this.$route.params.id}/memos`, this.memo)
+        .then(response => {
+          let e = response.data;
+          this.$router.go();
+        })
+        .catch(error => {
+          console.error(error);
+          if (error.response.data && error.response.data.errors) {
+            this.errors = error.response.data.errors;
+          }
+        });
+    }
   }
 }
 </script>

@@ -15,7 +15,7 @@ class Api::V1::BooksController < ApiController
     @memos = Memo.where(book_id: @book.id, user_id: current_user.id).order('created_at DESC')  # 投稿詳細に関連付けてあるコメントを全取得
     @memo = current_user.memos.new  # 投稿詳細画面でコメントの投稿を行うので、formのパラメータ用にCommentオブジェクトを取得
     @read = Read.where(book_id: @book.id, user_id: current_user.id)
-    render json: {book: @book, memos: @memos, memo:@memo, read: @read}
+    render json: {book: @book, memos: @memos, read: @read}
   end
 
   def create
