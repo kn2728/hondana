@@ -10,6 +10,12 @@ class Api::V1::MemosController < ApiController
     end
   end
 
+  def destroy
+    @memo = @book.memos.find(params[:id])
+    @memo.destroy!
+    head :no_content
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
