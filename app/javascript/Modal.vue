@@ -16,10 +16,10 @@
 
           <div class="modal-footer">
             <slot name="footer">
-              <button class="modal-default-button" @click="$emit('ok')">
+              <button class="btn btn-outline-primary" @click="$emit('ok')">
                 OK
               </button>
-              <button class="modal-default-button" @click="$emit('cancel')">
+              <button class="btn btn-outline-dark" @click="$emit('cancel')">
                 Cancel
               </button>
             </slot>
@@ -98,5 +98,9 @@ export default {
 .modal-leave-active .modal-container {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
+}
+
+button{
+  cursor: pointer;
 }
 </style>

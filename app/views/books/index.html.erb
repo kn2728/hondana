@@ -1,26 +1,41 @@
-
 <main role="main">
-      <section class="background py-2">
-        <h2 class="my-3 text-center">Hondanaにようこそ</h2>
-          <div class="mb-5">
-            <div class="text-center">
-              <p>読書をもっと面白い体験にしたい。そんなあなたに！</p>
+<div class="box background">
+  <div class="bgImg src1"></div>
+  <div class="bgImg src2"></div>
+  <div class="bgImg src3"></div>
+  <div class="bgImg src4"></div>
+  <div class="boxString">
+          <div class="fadein show w-100">
+            <h1 class="my-5" style="font-family:fantasy;">Hondana</h1>
+            <div class="">
+              <h3>このサービスは</h3>
+              <br>
+              <p>読んでいる本のメモを取ったり、</p>
+              <p>要約を投稿するサービスです。</p>
             </div>
+            <div id="open" class="ml-2">こだわりを見る</div>
           </div>
-      </section>
-
-      <div id="open">
-        詳細を見る
-      </div>
+  </div>
+</div>
 
       <div id="mask" class="hidden"></div>
 
-      <section id="modal" class="hidden">
-        <p>こんにちは。こんにちは。こんにちは。こんにちは。こんにちは。こんにちは。こんにちは。こんにちは。こんにちは。こんにちは。</p>
-        <div id="close">
+      <section id="modal" class="hidden shadow">
+        <p>1.シンプルな使用感を意識。</p>
+        <p>最近読書を始めた人も安心。
+        <p>2.みんなの要約は読書が終わるまでは読めません。</p>
+        <p>投稿内容にネタバレを気にすることなく、読み終わった後にその本がさらに楽しい。</p>
+        <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post ,class:"btn btn-outline-primary px-4 text-center" %>
+        <div class="" id="close">
           閉じる
         </div>
       </section>
+<footer class="text-center w-100">
+      <div class="row footer py-3">
+        <span class="text-muted mx-auto">© Hondana 2021</span>
+      </div>
+    </footer>
+
 </main>
 
  

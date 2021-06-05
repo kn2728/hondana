@@ -7,7 +7,7 @@ class Api::V1::BooksController < ApiController
   end
 
   def index
-    books = current_user.books
+    books = current_user.books.order('created_at DESC')
     render json: books
   end
 
@@ -19,25 +19,52 @@ class Api::V1::BooksController < ApiController
   end
 
   def create
-    book = Book.new(book_params)
-    if book.save
-      render json: book, status: :created
+    @book = Book.find_or_initialize_by(isbn: params[:isbn])
+    if @book.persisted?
+      @book.users << current_user
+      if @book.save
+        render json: @book, status: :created
+      else
+        render json: { errors: @book.errors.full_messages }, status: :unprocessable_entity
+      end
     else
-      render json: { errors: book.errors.full_messages }, status: :unprocessable_entity
+      results = RakutenWebService::Books::Book.search(isbn: @book.isbn)
+      @item = Book.create(read(results.first))
+      @item.users << current_user
+      if @item.save
+        render json: @item, status: :created
+      else
+        render json: { errors: @item.errors.full_messages }, status: :unprocessable_entity
+      end
     end
+    # book = Book.new(book_params)
+    # if book.save
+    #   render json: book, status: :created
+    # else
+    #   render json: { errors: book.errors.full_messages }, status: :unprocessable_entity
+    # end
   end
 
-  def update
-    if @book.update_attributes(book_params)
-      head :no_content
-    else
-      render json: { errors: @book.errors.full_messages }, status: :unprocessable_entity
-    end
-  end
+  # def update
+    # @book = Book.find(params[:id])
+    # Read.where(book_id: @book.id, user_id: current_user.id).update(complete: true)
+    # head :no_content
+    # if @book.update_attributes(book_params)
+    #   head :no_content
+    # else
+    #   render json: { errors: @book.errors.full_messages }, status: :unprocessable_entity
+    # end
+  # end
 
   def destroy
-    @book.destroy!
+    @book = Book.find(params[:id])
+    @book.users.delete(current_user)
     head :no_content
+    # @book.destroy!
+  end
+
+  def search
+    gon.application_id = ENV['APPLICATION_ID']
   end
 
   private
@@ -47,7 +74,20 @@ class Api::V1::BooksController < ApiController
   end
 
   def book_params
-    params.fetch(:book, {}).permit(:title, :author, :isbn, :image_url)
+    params.require(:book).permit(:title, :author, :isbn, :image_url)
+  end
+
+  def read(result)
+    title = result['title']
+    author = result['author']
+    isbn = result['isbn']
+    image_url = result['mediumImageUrl'].gsub('?_ex=120x120', '')
+    {
+      title: title,
+      author: author,
+      isbn: isbn,
+      image_url: image_url
+    }
   end
 
   def render_status_404(exception)

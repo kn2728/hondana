@@ -1,16 +1,38 @@
-<h2>Forgot your password?</h2>
+<div class="container mx-auto">
+  <div class="row" style="margin-top:80px;">
+    <div class="mx-auto w-30 shadow p-2 bg-light">
+    <h3 class="mb-3 pt-3 font-weight-normal text-center">パスワードをお忘れですか？</h3>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+    <div class="field">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-envelope mr-1" viewBox="0 0 16 16">
+          <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.758 2.855L15 11.114v-5.73zm-.034 6.878L9.271 8.82 8 9.583 6.728 8.82l-5.694 3.44A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.739zM1 11.114l4.758-2.876L1 5.383v5.73z"/>
+          </svg>
+          <%= f.label :email %>
+          <%= f.email_field :email, class:"email", placeholder:"sample123@sample.co.jp", autofocus: true%>
+        </div>
+        <p class="my-1">入力されたメールアドレスにパスワードのリセット手順を送信します。</p>
+        <div class="actions mt-3 text-center">
+          <%= f.submit "送信", class: 'btn btn-outline-primary px-4 mr-3' %>
+          <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post ,class:"btn btn-outline-primary px-4 mx-auto" %>
+        </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
 <% end %>
-
+<hr>
+<div class="text-center">
 <%= render "devise/shared/links" %>
+</div>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-4">
+<footer class="text-center">
+      <div class="py-3">
+        <span class="text-muted mx-auto">© Hondana 2021</span>
+      </div>
+    </footer>
+    </div>
+
+

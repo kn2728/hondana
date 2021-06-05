@@ -67,3 +67,5 @@ gem 'image_processing', '~> 1.2'
 gem 'devise'
 
 gem 'rakuten_web_service'
+gem 'dotenv-rails'
+gem 'gon'

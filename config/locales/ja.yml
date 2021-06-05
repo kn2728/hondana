@@ -1,6 +1,20 @@
 ---
 ja:
   activerecord:
+    attributes:
+      user:
+        nickname: ニックネーム
+        email: メールアドレス
+        password: パスワード
+        activated: アクティブフラグ
+        admin: 管理者フラグ
+      book:
+        title: タイトル
+        author: 著者
+      memo:
+        content: メモ
+      summary:
+        matome: 要約
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
