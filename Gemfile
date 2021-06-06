@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.0.0'
+gem 'rails', '~> 6.1.3.1'
 # Use mysql as the database for Active Record
 # gem 'mysql2', '>= 0.4.4'
 gem 'pg'
@@ -71,3 +71,4 @@ gem 'devise'
 gem 'rakuten_web_service'
 gem 'dotenv-rails'
 gem 'gon'
+gem "mimemagic", "~> 0.3.10"
