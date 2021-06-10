@@ -11,7 +11,7 @@
     <%= csp_meta_tag %>
     <script type="text/javascript" src="https://js.pay.jp/v1/"></script>
     <%= stylesheet_link_tag 'application', media: 'all'%>
-    <%= javascript_pack_tag 'application' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= include_gon %>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
@@ -53,12 +53,12 @@
                 <ul class='navbar-nav'>
                   <%# ログインの有無で表示を分岐 %>
                   <% if user_signed_in? %>
-                    <li><%= link_to current_user.nickname, "#", class: "nav-link text-dark m-2" %></li>
-                    <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "nav-link text-dark m-2" %></li>
+                    <li><%= link_to current_user.nickname, "#", class: "nav-link text-dark m-2 text-center" %></li>
+                    <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "nav-link text-dark m-2 text-center" %></li>
                   <% else %>
-                    <li><%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post ,class:"nav-link text-black m-2" %>
-                    <li><%= link_to 'ログイン', new_user_session_path, class: "nav-link text-black m-2" %></li>
-                    <li><%= link_to '新規登録', new_user_registration_path, class: "nav-link text-black m-2" %></li>
+                    <li><%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post ,class:"nav-link text-black m-2 text-center" %></li>
+                    <li><%= link_to 'ログイン', new_user_session_path, class: "nav-link text-black m-2 text-center" %></li>
+                    <li><%= link_to '新規登録', new_user_registration_path, class: "nav-link text-black m-2 text-center" %></li>
                   <% end %>
                 </ul>
               </div>
