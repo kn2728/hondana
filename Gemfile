@@ -72,3 +72,7 @@ gem 'rakuten_web_service'
 gem 'dotenv-rails'
 gem 'gon'
 gem "mimemagic", "~> 0.3.10"
+
+group :production do
+  gem 'unicorn', '5.4.1'
+end

@@ -112,6 +112,7 @@ img:hover{
 button{
   cursor: pointer;
 }
+
 .shadow{
   box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.3);   /* 影指定 */
   border-radius: 3px;                             /* 角丸指定 */

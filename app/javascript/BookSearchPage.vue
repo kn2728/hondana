@@ -44,7 +44,6 @@ export default {
                 isbn:''
             },
             errors: ''
-
         }
     },
     methods: {
