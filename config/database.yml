@@ -51,5 +51,6 @@ test:
 production:
   <<: *default
   database: hondana_production
-  username: hondana
-  password: <%= ENV['HONDANA_DATABASE_PASSWORD'] %>
+  username: root
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  socket: /var/lib/mysql/mysql.sock
