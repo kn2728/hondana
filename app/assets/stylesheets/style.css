@@ -122,7 +122,7 @@
 
 /* --- 段差で背景画像のアニメーションを実行 ----------------- */
 .box .src1 {
-  background-image : image-url('reading1.jpeg');   /* 背景の画像を指定 */
+  background-image : url(<%= asset_path 'reading1.jpeg' %>);   /* 背景の画像を指定 */
   height: 780px;
   background-size: cover;
   background-position: center center;;
