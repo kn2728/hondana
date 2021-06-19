@@ -2,7 +2,7 @@ class Api::V1::BooksController < ApiController
   before_action :set_book, only: [:show, :update, :destroy]
 
   # ActiveRecordのレコードが見つからなければ404 not foundを応答する
-  rescue_from ActiveRecord::RecordNotFound do |exception|
+  rescue_from ActiveRecord::RecordNotFound do |_exception|
     render json: { error: '404 not found' }, status: 404
   end
 
@@ -12,10 +12,10 @@ class Api::V1::BooksController < ApiController
   end
 
   def show
-    @memos = Memo.where(book_id: @book.id, user_id: current_user.id).order('created_at DESC')  # 投稿詳細に関連付けてあるコメントを全取得
-    @memo = current_user.memos.new  # 投稿詳細画面でコメントの投稿を行うので、formのパラメータ用にCommentオブジェクトを取得
+    @memos = Memo.where(book_id: @book.id, user_id: current_user.id).order('created_at DESC') # 投稿詳細に関連付けてあるコメントを全取得
+    @memo = current_user.memos.new # 投稿詳細画面でコメントの投稿を行うので、formのパラメータ用にCommentオブジェクトを取得
     @read = Read.where(book_id: @book.id, user_id: current_user.id)
-    render json: {book: @book, memos: @memos, read: @read}
+    render json: { book: @book, memos: @memos, read: @read }
   end
 
   def create
@@ -46,14 +46,14 @@ class Api::V1::BooksController < ApiController
   end
 
   # def update
-    # @book = Book.find(params[:id])
-    # Read.where(book_id: @book.id, user_id: current_user.id).update(complete: true)
-    # head :no_content
-    # if @book.update_attributes(book_params)
-    #   head :no_content
-    # else
-    #   render json: { errors: @book.errors.full_messages }, status: :unprocessable_entity
-    # end
+  # @book = Book.find(params[:id])
+  # Read.where(book_id: @book.id, user_id: current_user.id).update(complete: true)
+  # head :no_content
+  # if @book.update_attributes(book_params)
+  #   head :no_content
+  # else
+  #   render json: { errors: @book.errors.full_messages }, status: :unprocessable_entity
+  # end
   # end
 
   def destroy

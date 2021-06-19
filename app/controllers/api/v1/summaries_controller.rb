@@ -2,15 +2,15 @@ class Api::V1::SummariesController < ApiController
   before_action :set_summary, only: %w[index new create edit update]
 
   def index
-    @summaries = Summary.where(book_id: @book.id).as_json(include: {:user =>{only: :nickname}})
+    @summaries = Summary.where(book_id: @book.id).as_json(include: { user: { only: :nickname } })
     @summary = current_user.summaries.find_by(book_id: @book.id)
-    render json: {summaries: @summaries, summary: @summary, book: @book}
+    render json: { summaries: @summaries, summary: @summary, book: @book }
   end
 
   def new
     @memos = Memo.where(book_id: @book.id, user_id: current_user.id).order('created_at DESC')  # 投稿詳細に関連付けてあるコメントを全取得
     @summary = Summary.new
-    render json: {book: @book, memos: @memos, summary: @summary}
+    render json: { book: @book, memos: @memos, summary: @summary }
   end
 
   def create
@@ -26,7 +26,7 @@ class Api::V1::SummariesController < ApiController
   def edit
     @memos = Memo.where(book_id: @book.id, user_id: current_user.id).order('created_at DESC')
     @summary = Summary.find_by(id: params[:id])
-    render json: {book: @book, memos: @memos ,summary: @summary}
+    render json: { book: @book, memos: @memos, summary: @summary }
   end
 
   def update
