@@ -5,12 +5,42 @@
 [![Image from Gyazo](https://i.gyazo.com/23a3c8b23472f11a789829e35dd7fdf1.png)](https://gyazo.com/23a3c8b23472f11a789829e35dd7fdf1)
 
 ## 制作背景
-読書の大切さはわかっているのに、多くの日本人が読書していないと文化庁の調査でわかった。
-<br>エンタメとしての読書を向上できないかと考え、制作しました。
+毎日新聞社の世論調査で約9割の人が読書は大切と回答しているのに、文化庁の調査で1ヶ月に1冊も読まないと回答したのが47.3%。
+<br>大切だとわかっているのに読まない。もしくは読む時間がないことに対して、
+<br>**エンタメとしての読書を向上できないかと考え、制作しました。**
 <br>読書が終わり要約を投稿するまで他者の要約が見えないようにしました。(要約のブラックボックス化
 )
 <br>
 * 読書が楽しみになる
 * 読書が終わった後に追加体験ができる
 * ネタバレを気にせず投稿できる
+<br>上記を理由にエンタメとしての価値が上がるではないかと考えました。
+
+## URL
+https://hondana2021.com
+<br>
+
+## 使用技術
+* フロントエンド
+ * HTML/CSS
+ * Javascript
+ * Vue.js 2.6.14
+* バックエンド
+ * Ruby 2.6.5
+ * Ruby on Rails 6.1.3 (APIモード)
+ * Rubocop（コード解析ツール)
+ * Rspec（テスト)
+* インフラ
+ * Docker / Docker-compose
+ * AWS (EC2 / RDS(MySQL) / S3 / VPC / IAM / Route53 / ACM / ALB / Cloudfront)
+ * MySQL 8.0 / Unicorn / Nginx
+
+## AWS構成図
+![AWS Design (updated) (1)](https://user-images.githubusercontent.com/69581420/122664135-6c00ce80-d1da-11eb-823d-cb06fe7f0d74.png)
+
+## ER図
+![ER1 (1)](https://user-images.githubusercontent.com/69581420/122664155-88047000-d1da-11eb-8585-5d03298d56a7.png)
+
+
+
 
