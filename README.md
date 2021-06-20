@@ -1,24 +1,16 @@
-# README
+# Hondana
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 概要
+『Hondana』は本のメモと要約投稿サービスです。
+[![Image from Gyazo](https://i.gyazo.com/23a3c8b23472f11a789829e35dd7fdf1.png)](https://gyazo.com/23a3c8b23472f11a789829e35dd7fdf1)
 
-Things you may want to cover:
+## 制作背景
+読書の大切さはわかっているのに、多くの日本人が読書していないと文化庁の調査でわかった。
+<br>エンタメとしての読書を向上できないかと考え、制作しました。
+<br>読書が終わり要約を投稿するまで他者の要約が見えないようにしました。(要約のブラックボックス化
+)
+<br>
+* 読書が楽しみになる
+* 読書が終わった後に追加体験ができる
+* ネタバレを気にせず投稿できる
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
