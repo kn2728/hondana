@@ -2,6 +2,7 @@
 
 ## 概要
 『Hondana』は本のメモと要約投稿サービスです。
+<br>
 [![Image from Gyazo](https://i.gyazo.com/23a3c8b23472f11a789829e35dd7fdf1.png)](https://gyazo.com/23a3c8b23472f11a789829e35dd7fdf1)
 
 ## 制作背景
@@ -46,9 +47,9 @@ https://hondana2021.com
 
 - ユーザー機能(devise)
     - 新規登録
-     - ニックネーム
-     - メールアドレス
-     - パスワード
+      - ニックネーム
+      - メールアドレス
+      - パスワード
     - ログイン
     - ログアウト
     - ゲストログイン
