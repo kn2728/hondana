@@ -21,19 +21,20 @@ https://hondana2021.com
 <br>
 
 ## 使用技術
-* フロントエンド
- * HTML/CSS
- * Javascript
- * Vue.js 2.6.14
-* バックエンド
- * Ruby 2.6.5
- * Ruby on Rails 6.1.3 (APIモード)
- * Rubocop（コード解析ツール)
- * Rspec（テスト)
-* インフラ
- * Docker / Docker-compose
- * AWS (EC2 / RDS(MySQL) / S3 / VPC / IAM / Route53 / ACM / ALB / Cloudfront)
- * MySQL 8.0 / Unicorn / Nginx
+
+- フロントエンド
+ - HTML/CSS
+ - Javascript
+ - Vue.js 2.6.14
+- バックエンド
+ - Ruby 2.6.5
+ - Ruby on Rails 6.1.3 (APIモード)
+ - Rubocop（コード解析ツール)
+ - Rspec（テスト)
+- インフラ
+ - Docker / Docker-compose
+ - AWS (EC2 / RDS(MySQL) / S3 / VPC / IAM / Route53 / ACM / ALB / Cloudfront)
+ - MySQL 8.0 / Unicorn / Nginx
 
 ## AWS構成図
 ![AWS Design (updated) (1)](https://user-images.githubusercontent.com/69581420/122664135-6c00ce80-d1da-11eb-823d-cb06fe7f0d74.png)
@@ -43,42 +44,34 @@ https://hondana2021.com
 
 ## 機能一覧
 
-* ユーザー機能(devise)
- * 新規登録
-  * ニックネーム
-  * メールアドレス
-  * パスワード
- * ログイン
- * ログアウト
- * ゲストログイン
-
-* 本登録機能
- * タイトル検索(楽天Books API)
-
-* メモ投稿機能
- * メモ投稿
- * メモ削除
-
-* 要約投稿機能
- * 要約投稿
- * 編集
-
-* 他ユーザー要約一覧(要約投稿後)
+- ユーザー機能(devise)
+ - 新規登録
+  - ニックネーム
+  - メールアドレス
+  - パスワード
+ - ログイン
+ - ログアウト
+ - ゲストログイン
+- 本登録機能
+ - タイトル検索(楽天Books API)
+- メモ投稿機能
+ - メモ投稿
+ - メモ削除
+- 要約投稿機能
+ - 要約投稿
+ - 編集
+- 他ユーザー要約一覧(要約投稿後)
 
 ## 見ていただきたいポイント
 
-* 他のアプリケーションにない機能の導入
- * 他ユーザーの要約ブラックボックス化
-
-* ユーザー機能以外のところをSPA化
- * ユーザビリティを意識し、Vue.jsを導入
-
-* 直感的に使用できるUI\UX
- * 広い幅の年齢層が使用することで、要約内容の充実化
-
-* 楽天Books API導入
- * 本の表紙や情報を外部から取り入れる
- 
-* インフラにAWS,開発にDockerを導入
- * 多くの企業様で利用されている環境を体験
+- 他のアプリケーションにない機能の導入
+ - 他ユーザーの要約ブラックボックス化
+- ユーザー機能以外のところをSPA化
+ - ユーザビリティを意識し、Vue.jsを導入
+- 直感的に使用できるUI\UX
+ - 広い幅の年齢層が使用することで、要約内容の充実化
+- 楽天Books API導入
+ - 本の表紙や情報を外部から取り入れる
+- インフラにAWS,開発にDockerを導入
+ - 多くの企業様で利用されている環境を体験
 
